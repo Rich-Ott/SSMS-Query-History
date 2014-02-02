@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SSMSQueryHistory</name>
+    </assembly>
+    <members>
+        <member name="T:SSMSQueryHistory.SSMSQueryHistoryControl">
+            <summary>
+            Interaction logic for TestControl.xaml
+            </summary>
+            <summary>
+            SSMSQueryHistoryControl
+            </summary>
+        </member>
+        <member name="T:SSMSQueryHistory.ISSMSQueryHistory">
+            <summary>
+            Interface to allow accessing query history through COM
+            </summary>
+        </member>
+        <member name="M:SSMSQueryHistory.SSMSQueryHistoryControl.#ctor">
+            <summary>
+            Constructor for a TestControl
+            </summary>
+        </member>
+        <member name="M:SSMSQueryHistory.SSMSQueryHistoryControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:SSMSQueryHistory.Connect">
+            <summary>The object for implementing an Add-in.</summary>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="F:SSMSQueryHistory.Connect.SSMSQueryHistoryGuid">
+            <summary>
+            Guid string of the SSMSQueryHistory add-in
+            </summary>
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.#ctor">
+            <summary>Implements the constructor for the Add-in object. Place your initialization code within this method.</summary>
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.OnConnection(System.Object,Extensibility.ext_ConnectMode,System.Object,System.Array@)">
+            <summary>Implements the OnConnection method of the IDTExtensibility2 interface. Receives notification
+            that the Add-in is being loaded.</summary>
+            <param term='application'>Root object of the host application.</param>
+            <param term='connectMode'>Describes how the Add-in is being loaded.</param>
+            <param term='addInInst'>Object representing this Add-in.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.CommandEvents_AfterExecute(System.String,System.Int32,System.Object,System.Object)">
+            <summary>
+            Writes TSQL query history to an XML file
+            </summary>
+            <param name="Guid"></param>
+            <param name="ID"></param>
+            <param name="customIn"></param>
+            <param name="customOut"></param>
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.OnDisconnection(Extensibility.ext_DisconnectMode,System.Array@)">
+            <summary>Implements the OnDisconnection method of the IDTExtensibility2 interface. Receives notification that the Add-in is being unloaded.</summary>
+            <param term='disconnectMode'>Describes how the Add-in is being unloaded.</param>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.OnAddInsUpdate(System.Array@)">
+            <summary>Implements the OnAddInsUpdate method of the IDTExtensibility2 interface. Receives notification when the collection of Add-ins has changed.</summary>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.OnStartupComplete(System.Array@)">
+            <summary>Implements the OnStartupComplete method of the IDTExtensibility2 interface. Receives notification
+            that the host application has completed loading.</summary>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.OnBeginShutdown(System.Array@)">
+            <summary>Implements the OnBeginShutdown method of the IDTExtensibility2 interface. Receives notification
+            that the host application is being unloaded.</summary>
+            <param term='custom'>Array of parameters that are host application specific.</param>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.QueryStatus(System.String,EnvDTE.vsCommandStatusTextWanted,EnvDTE.vsCommandStatus@,System.Object@)">
+            <summary>Implements the QueryStatus method of the IDTCommandTarget interface. This is called when the
+            command's availability is updated</summary>
+            <param term='commandName'>The name of the command to determine state for.</param>
+            <param term='neededText'>Text that is needed for the command.</param>
+            <param term='status'>The state of the command in the user interface.</param>
+            <param term='commandText'>Text requested by the neededText parameter.</param>
+            <seealso class='Exec' />
+        </member>
+        <member name="M:SSMSQueryHistory.Connect.Exec(System.String,EnvDTE.vsCommandExecOption,System.Object@,System.Object@,System.Boolean@)">
+            <summary>Implements the Exec method of the IDTCommandTarget interface. This is called when the command is invoked.</summary>
+            <param term='commandName'>The name of the command to execute.</param>
+            <param term='executeOption'>Describes how the command should be run.</param>
+            <param term='varIn'>Parameters passed from the caller to the command handler.</param>
+            <param term='varOut'>Parameters passed from the command handler to the caller.</param>
+            <param term='handled'>Informs the caller if the command was handled or not.</param>
+            <seealso class='Exec' />
+        </member>
+        <member name="T:SSMSQueryHistory.RemoveNewLinesConverter">
+            <summary>
+            Converter used to remove newlines from a string
+            </summary>
+        </member>
+        <member name="M:SSMSQueryHistory.RemoveNewLinesConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Removes any newline (\r and \n) characters and replaces them with a single space character
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SSMSQueryHistory.RemoveNewLinesConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Just returns the same value (since I can't replace new lines that no longer exist)
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SSMSQueryHistory.HistoryEntry">
+            <summary>
+            Class to track history entries
+            </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.Server">
+            <summary>
+            Stores the server name
+            </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.Database">
+            <summary>
+            Stores the database name
+            </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.DateTime">
+            <summary>
+            Stores the DateTime of the query
+            </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.Query">
+            <summary>
+            Stores the query text
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="B30AAE7C-E969-4D35-8ED1-27C2C3A6228C"
+           Name="SSMS Query History"
+           Language="1033"
+           Version="!(bind.FileVersion.SSMSQueryHistoryDLL)"
+           Manufacturer="Rich Ott"
+           UpgradeCode="0164947F-DC44-45EF-810A-376915B7A3A6"
+           Codepage="1252">
+		<Package InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine"
+             Id="*"
+             Keywords="Installer SSMS Query History SQL Server"
+             Description="Query History add-in for SQL Server Management Studio 2012 and 2014"
+             Manufacturer="Rich Ott"
+             Languages="1033"
+             SummaryCodepage="1252" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+    <UIRef Id="WixUI_Minimal" />
+    <WixVariable Id="WixUILicenseRtf" Value="..\License.rtf" />
+
+		<Feature Id="ProductFeature"
+             Title="SSMS Query History"
+             Level="1"
+             Description="SSMS Installer Desc."
+             Display="expand">
+			<ComponentGroupRef Id="SSMSInstallerComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="DLLInstallFolder" Name="SSMS Query History" />
+			</Directory>
+      <Directory Id="CommonAppDataFolder">
+        <Directory Id="MicrosoftFolder" Name="Microsoft">
+          <Directory Id="MsEnvSharedFolder" Name="MSEnvShared">
+            <Directory Id="AddInInstallFolder" Name="AddIns" />
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="LocalAppDataFolder">
+        <Directory Id="SSMSQueryHistoryLogFolder" Name="SSMS Query History" />
+      </Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="SSMSInstallerComponents">
+			<Component Id="SSMSDLLInstaller" Guid="F65833E0-9340-49D6-8010-7E1B14C1F7E5" Directory="DLLInstallFolder">
+        <File Id="SSMSQueryHistoryDLL" Name="SSMSQueryHistory.dll" Source="$(var.SSMSQueryHistory.TargetPath)" KeyPath="yes" />
+			</Component>
+      <Component Id="SSMSAddInInstaller" Guid="CA6B9997-F8F2-487E-BA2A-4E73F85510C6" Directory="AddInInstallFolder">
+        <RemoveFolder Id="RemoveSSMSQueryHistoryLogFolder" Directory="SSMSQueryHistoryLogFolder" On="uninstall" />
+        <File Id="SSMSQueryHistoryAddIn" Name="SSMSQueryHistory.addin" Source="$(var.SSMSQueryHistory.TargetDir)\SSMSQueryHistory.addin" KeyPath="yes" />
+        <util:XmlConfig Id="FixAddInPath"
+                        Action="create"
+                        ElementPath="//Extensibility/Addin/Assembly"
+                        File="[#SSMSQueryHistoryAddIn]"
+                        Node="value"
+                        On="install"
+                        PreserveModifiedDate="yes"
+                        Value="[DLLInstallFolder]\$(var.SSMSQueryHistory.TargetFileName)"
+                        VerifyPath="//Extensibility/Addin/Assembly" />
+        <!-- Remove log files here based on UI option (possibly using util:RemoveFolderEx) -->
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

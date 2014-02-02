@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSMSQueryHistory", "SSMSQueryHistory.csproj", "{38143220-1003-4674-B831-B5B86A2B0990}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B5074B4-CF3B-4E89-B0B5-E5C1558C9447}"
+	ProjectSection(SolutionItems) = preProject
+		Todo Items.txt = Todo Items.txt
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\Installer.wixproj", "{41F79013-1EB9-4B17-876B-28FB02676112}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		SSMS 2012|x86 = SSMS 2012|x86
+		SSMS 2014|x86 = SSMS 2014|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38143220-1003-4674-B831-B5B86A2B0990}.SSMS 2012|x86.ActiveCfg = SSMS 2012|x86
+		{38143220-1003-4674-B831-B5B86A2B0990}.SSMS 2014|x86.ActiveCfg = SSMS 2014|x86
+		{41F79013-1EB9-4B17-876B-28FB02676112}.SSMS 2012|x86.ActiveCfg = SSMS 2012|x86
+		{41F79013-1EB9-4B17-876B-28FB02676112}.SSMS 2014|x86.ActiveCfg = SSMS 2014|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

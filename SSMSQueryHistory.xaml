@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="SSMSQueryHistory.SSMSQueryHistoryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SSMSQueryHistory"
+             mc:Ignorable="d"
+             d:DesignHeight="700"
+             d:DesignWidth="900">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="7"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="156"/>
+            <ColumnDefinition Width="156"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <local:RemoveNewLinesConverter x:Key="RemoveNewLinesKey"/>
+        </Grid.Resources>
+        <!-- Top Row -->
+        <DatePicker Name="StartDate" Margin="2" Width="150"/>
+        <DatePicker Name="EndDate" Grid.Column="1" Margin="2" Width="150"/>
+        
+        <!-- Second Row -->
+        <TextBox Name="Search" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontSize="9" Margin="2" Width="308"/>
+        <Button Grid.RowSpan="2"  Grid.Column="2" Click="SearchHistory_Click" Margin="10,2,2,2" Height="25" Width="90">Search</Button>
+
+        <!-- Third Row -->
+        <ProgressBar Name="SearchProgress" Grid.Row="2" Grid.ColumnSpan="4"/>
+        
+        <!-- Fourth Row -->
+        <ListView Name="SearchResults" Grid.Row="3" Grid.ColumnSpan="4" SizeChanged="SearchResults_SizeChanged" FlowDirection="LeftToRight">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Query Text">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Text="{Binding Path=Query, Converter={StaticResource RemoveNewLinesKey},Mode=OneWay}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Server">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Text="{Binding Path=Server, Converter={StaticResource RemoveNewLinesKey},Mode=OneWay}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Database">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Text="{Binding Path=Database, Converter={StaticResource RemoveNewLinesKey},Mode=OneWay}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Query Executed On">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Text="{Binding Path=DateTime,Mode=OneWay}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <!-- Fifth Row -->
+        <GridSplitter Grid.Row="4" Grid.ColumnSpan="4" Width="Auto" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"/>
+        
+        <!-- Sixth Row -->
+        <TextBox Name="CurrentQuery" Grid.Row="5" Grid.ColumnSpan="4" DataContext="{Binding ElementName=SearchResults, Path=SelectedItem}" Text="{Binding Path=Query}" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+    </Grid>
+</UserControl>
