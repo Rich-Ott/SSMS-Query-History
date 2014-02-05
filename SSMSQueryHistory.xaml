@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:SSMSQueryHistory"
              mc:Ignorable="d"
              d:DesignHeight="700"
-             d:DesignWidth="900">
+             d:DesignWidth="900"
+             FocusManager.FocusedElement="{Binding ElementName=Search}">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="28"/>
@@ -30,8 +31,8 @@
         <DatePicker Name="EndDate" Grid.Column="1" Margin="2" Width="150"/>
         
         <!-- Second Row -->
-        <TextBox Name="Search" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontSize="9" Margin="2" Width="308"/>
-        <Button Grid.RowSpan="2"  Grid.Column="2" Click="SearchHistory_Click" Margin="10,2,2,2" Height="25" Width="90">Search</Button>
+        <TextBox Name="Search" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" FontSize="9" Margin="2" Width="308" VerticalContentAlignment="Center"/>
+        <Button Grid.RowSpan="2" Grid.Column="2" Click="SearchHistory_Click" Margin="10,2,2,2" Height="25" Width="90" IsDefault="True">Search</Button>
 
         <!-- Third Row -->
         <ProgressBar Name="SearchProgress" Grid.Row="2" Grid.ColumnSpan="4"/>
