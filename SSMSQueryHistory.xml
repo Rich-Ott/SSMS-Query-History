@@ -4,27 +4,34 @@
         <name>SSMSQueryHistory</name>
     </assembly>
     <members>
-        <member name="T:SSMSQueryHistory.SSMSQueryHistoryControl">
+        <member name="T:SSMSQueryHistory.HistoryEntry">
             <summary>
-            Interaction logic for TestControl.xaml
+            Class to track history entries
             </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.Server">
             <summary>
-            SSMSQueryHistoryControl
+            Stores the server name
+            </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.Database">
+            <summary>
+            Stores the database name
+            </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.DateTime">
+            <summary>
+            Stores the DateTime of the query
+            </summary>
+        </member>
+        <member name="P:SSMSQueryHistory.HistoryEntry.Query">
+            <summary>
+            Stores the query text
             </summary>
         </member>
         <member name="T:SSMSQueryHistory.ISSMSQueryHistory">
             <summary>
             Interface to allow accessing query history through COM
-            </summary>
-        </member>
-        <member name="M:SSMSQueryHistory.SSMSQueryHistoryControl.#ctor">
-            <summary>
-            Constructor for a TestControl
-            </summary>
-        </member>
-        <member name="M:SSMSQueryHistory.SSMSQueryHistoryControl.InitializeComponent">
-            <summary>
-            InitializeComponent
             </summary>
         </member>
         <member name="T:SSMSQueryHistory.Connect">
@@ -122,29 +129,22 @@
             <param name="culture"></param>
             <returns></returns>
         </member>
-        <member name="T:SSMSQueryHistory.HistoryEntry">
+        <member name="T:SSMSQueryHistory.SSMSQueryHistoryControl">
             <summary>
-            Class to track history entries
+            Interaction logic for TestControl.xaml
+            </summary>
+            <summary>
+            SSMSQueryHistoryControl
             </summary>
         </member>
-        <member name="P:SSMSQueryHistory.HistoryEntry.Server">
+        <member name="M:SSMSQueryHistory.SSMSQueryHistoryControl.#ctor">
             <summary>
-            Stores the server name
+            Constructor for a TestControl
             </summary>
         </member>
-        <member name="P:SSMSQueryHistory.HistoryEntry.Database">
+        <member name="M:SSMSQueryHistory.SSMSQueryHistoryControl.InitializeComponent">
             <summary>
-            Stores the database name
-            </summary>
-        </member>
-        <member name="P:SSMSQueryHistory.HistoryEntry.DateTime">
-            <summary>
-            Stores the DateTime of the query
-            </summary>
-        </member>
-        <member name="P:SSMSQueryHistory.HistoryEntry.Query">
-            <summary>
-            Stores the query text
+            InitializeComponent
             </summary>
         </member>
     </members>

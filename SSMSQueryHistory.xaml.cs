@@ -94,6 +94,9 @@ namespace SSMSQueryHistory
 
         private List<HistoryEntry> GetHistoryItems(DateTime start, DateTime end, string search)
         {
+            // Add an artificial delay to make it look like something's happening...
+            Thread.Sleep(500);
+
             string path = System.IO.Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "SSMS Query History");
