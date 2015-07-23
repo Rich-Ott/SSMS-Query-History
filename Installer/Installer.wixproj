@@ -21,6 +21,11 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <DefineConstants>Debug;</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SSMS 2016|x86' ">
+    <OutputPath>bin\SSMS 2016\</OutputPath>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DefineConstants>Debug;</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
   </ItemGroup>
