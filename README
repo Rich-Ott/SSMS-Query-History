@@ -6,4 +6,6 @@ Currently supports:
 
 SQL Server Management Studio 2012
 SQL Server Management Studio 2014
-SQL Server Management Studio 2016 CTP2.2 (July 2015 Preview)
+SQL Server Management Studio 2016 up to the March 2016 Preview
+
+As of the March 2016 Preview release, Microsoft moved to using the Visual Studio 2015 shell and currently does not allow 3rd party extensions. Until Microsoft allows 3rd party extensions again SSMS 2016 is unsupported.
